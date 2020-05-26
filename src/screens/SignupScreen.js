@@ -1,14 +1,25 @@
-import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import React, {useContext, useEffect} from 'react';
+import { View, StyleSheet } from 'react-native';
+import {Context as AuthContext } from '../context/authContext';
+import { NavigationEvents} from 'react-navigation'
 import AuthForm from '../components/AuthForm';
 import NavLink from '../components/NavLink';
 
-const SignupScreen = ()=>{
+const SignupScreen = ({navigation})=>{
+    const {state, signup, localLogin, clrErrMsg} = useContext(AuthContext);
+
+    useEffect(()=>{
+        localLogin();
+    }, [])
     return <View style={styles.container}>
+
+                <NavigationEvents
+                    onWillFocus={clrErrMsg}
+                ></NavigationEvents>
                 <AuthForm
                     headerText='Sign Up To Jitne'
-                    errorMsg=""
-                    onSubmit={()=>{}}
+                    errorMsg={state.errorMessage}
+                    onSubmit={signup}
                     submitButtonText='Sign Up'
                 ></AuthForm>
 
