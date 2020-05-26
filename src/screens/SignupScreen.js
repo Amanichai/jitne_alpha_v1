@@ -1,6 +1,7 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import AuthForm from '../components/AuthForm';
+import NavLink from '../components/NavLink';
 
 const SignupScreen = ()=>{
     return <View style={styles.container}>
@@ -10,12 +11,17 @@ const SignupScreen = ()=>{
                     onSubmit={()=>{}}
                     submitButtonText='Sign Up'
                 ></AuthForm>
+
+                <NavLink
+                    routeName='Signin'
+                    text='Already have an Account? Sign in!'
+                ></NavLink>
             </View>
 };
 
 SignupScreen.navigationOptions = ()=>{
     return {
-        headerShown: false
+        headerShown: false,
     }
 }
 
@@ -24,8 +30,9 @@ const styles = StyleSheet.create({
         textAlign: "center",
         flex: 1,
         justifyContent: 'center',
-        marginBottom: 200
-    }
+        paddingBottom: 200,
+        backgroundColor: "#fed301"
+    },
 });
 
 export default SignupScreen;

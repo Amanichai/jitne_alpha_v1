@@ -9,7 +9,7 @@ const AuthForm = ({headerText, errorMsg, onSubmit, submitButtonText})=>{
     return (
         <>
             <Spacer>
-                <Text style={styles.ctrTxt}>{headerText}</Text>
+                <Text h3 style={styles.headerStyle}>{headerText}</Text>
             </Spacer>
             <Spacer>
                 <Input
@@ -31,6 +31,7 @@ const AuthForm = ({headerText, errorMsg, onSubmit, submitButtonText})=>{
                 <Spacer>
                     {errorMsg ? <Text style={styles.errorStyle}>{errorMsg}</Text> : null}
                     <Button
+                    style={styles.buttonStyle}
                     title={submitButtonText}
                     onPress={()=>onSubmit({email, password})}
                     raised
@@ -48,8 +49,10 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         margin: 10
     },
-    ctrTxt: {
+    headerStyle: {
         textAlign: 'center',
+        fontSize: 28,
+        color: '#4388d6'
     }
 });
 
