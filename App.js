@@ -1,19 +1,26 @@
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { createAppContainer } from 'react-navigation';
+import { createStackNavigator } from 'react-navigation-stack';
 
-export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-    </View>
-  );
-}
+import HomeScreen from './src/screens/HomeScreen';
+import SignupScreen from './src/screens/SignupScreen';
+import SigninScreen from './src/screens/SigninScreen';
+import FundScreen from './src/screens/FundScreen';
+import AccountScreen from './src/screens/AccountScreen';
+import ResolveAuthScreen from './src/screens/ReseloveAuthScreen';
+import {createSwitchNavigator } from 'react-navigation';
+import { createBottomTabNavigator } from 'react-navigation-tabs'
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
+const switchNavigator = createSwitchNavigator({
+  loginflow: createStackNavigator({
+    Signup: SignupScreen,
+    Signin: SigninScreen
+  }),
+  mainflow: createBottomTabNavigator({
+    Home: HomeScreen,
+    Fund: FundScreen,
+    Account: AccountScreen
+  })
 });
+
+export default createAppContainer(switchNavigator);
+
